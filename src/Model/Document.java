@@ -210,16 +210,17 @@ public class Document implements Comparable<Document> {
     
     public void IndonesianStemming(){
         String text = content;
-        Version matchVersion = Version.LUCENE_7_7_0;
-        Analyzer analyzer = new StandardAnalyzer();
+//        System.out.println("Text = "+text);
+        Version matchVersion = Version.LUCENE_7_7_0; // Substitute desired Lucene version for XY
+        Analyzer analyzer = new IndonesianAnalyzer();
         analyzer.setVersion(matchVersion);
-        //ambil stopword
-        CharArraySet stopWords = IndonesianAnalyzer.getDefaultStopSet();
-        //buat token
-        TokenStream tokenStream = analyzer.tokenStream("myField", new StringReader(text.trim()));
-        //buang Stopword
+        // buat token
+        TokenStream tokenStream = analyzer.tokenStream(
+                "myField",
+                new StringReader(text.trim()));
+        // stemming
         tokenStream = new PorterStemFilter(tokenStream);
-        //buat string baru tanpa stopword
+        // buat string baru tanpa stopword
         StringBuilder sb = new StringBuilder();
         CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
         try {
