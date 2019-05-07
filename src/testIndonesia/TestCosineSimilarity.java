@@ -7,12 +7,14 @@ package testIndonesia;
 
 import Model.Document;
 import Model.InvertedIndex;
+import Model.Posting;
+import java.util.ArrayList;
 
 /**
  *
  * @author admin
  */
-public class TestCosineSimilarityAntarDokumen {
+public class TestCosineSimilarity {
     public static void main(String[] args) {
         // seting dokumen
         Document doc1 = new Document(1, "Fahri Hamzah Usul Ibu Kota Pindah ke Kepulauan Seribu Kompas.com - 07/05/2019, 11:19 WIB \n"
@@ -46,5 +48,9 @@ public class TestCosineSimilarityAntarDokumen {
         index.addNewDocument(doc3);
         // bikin dictionary
         index.makeDictionaryWithTermNumber();
+        ArrayList<Posting> listDoc1 = doc1.getListofPosting();
+        for(Posting temp:listDoc1){
+            System.out.println(temp);
+        }
     }
 }

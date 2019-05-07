@@ -9,21 +9,22 @@ package Model;
  *
  * @author AxYxA
  */
-public class Posting implements Comparable<Posting>{
+public class Posting implements Comparable<Posting> {
+
     private String term;
     private Document document;
     private int numberOfTerm = 1;
     private double weight = 0.0;
 
-    public Posting(){
-        
+    public Posting() {
+
     }
-    
+
     public Posting(Document document) {
         this.document = document;
     }
-    
-    public Posting(String term,Document document) {
+
+    public Posting(String term, Document document) {
         this.term = term;
         this.document = document;
     }
@@ -43,7 +44,7 @@ public class Posting implements Comparable<Posting>{
     public void setTerm(String term) {
         this.term = term;
     }
-    
+
     public Document getDocument() {
         return document;
     }
@@ -56,7 +57,6 @@ public class Posting implements Comparable<Posting>{
     public int compareTo(Posting o) {
         return term.compareToIgnoreCase(o.getTerm());
     }
-    
 
     public double getWeight() {
         return weight;
@@ -65,4 +65,11 @@ public class Posting implements Comparable<Posting>{
     public void setWeight(double weight) {
         this.weight = weight;
     }
+
+    @Override
+    public String toString() {
+        return "Posting{" + "term=" + term + ", numberOfTerm=" + numberOfTerm + ", weight=" + weight + '}';
+    }
+
+    
 }
