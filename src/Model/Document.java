@@ -207,6 +207,7 @@ public class Document implements Comparable<Document> {
         }
         content = sb.toString();
     }
+    
     public void IndonesianStemming(){
         String text = content;
         Version matchVersion = Version.LUCENE_7_7_0;
