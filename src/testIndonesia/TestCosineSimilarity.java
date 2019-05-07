@@ -48,8 +48,17 @@ public class TestCosineSimilarity {
         index.addNewDocument(doc3);
         // bikin dictionary
         index.makeDictionaryWithTermNumber();
-        ArrayList<Posting> listDoc1 = doc1.getListofPosting();
+        
+        int IdDokumen = 1;
+        System.out.println("ID Dokumen : "+IdDokumen);
+        ArrayList<Posting> listDoc1 = index.makeTFIDF(IdDokumen);
         for(Posting temp:listDoc1){
+            System.out.println(temp);
+        }
+        int idDokumen = 2;
+        System.out.println("ID Dokumen : "+idDokumen);
+        ArrayList<Posting> listDoc2 = index.makeTFIDF(idDokumen);
+        for(Posting temp:listDoc2){
             System.out.println(temp);
         }
     }
