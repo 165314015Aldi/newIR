@@ -33,6 +33,8 @@ public class Document implements Comparable<Document> {
     private int id;
     private String content;
     private String realContent;
+    
+    private ArrayList<Posting> listofPosting = new ArrayList<Posting>();
 
     public String getRealContent() {
         return realContent;
@@ -81,6 +83,15 @@ public class Document implements Comparable<Document> {
         this.content = content;
     }
 
+    public void setListofPosting(ArrayList<Posting> listofPosting) {
+        this.listofPosting = listofPosting;
+    }
+    
+    public ArrayList<Posting> getListofPosting() {
+        return listofPosting;
+    }
+    
+    
     public String[] getListofTerm() {
         String value = this.getContent();
         value = value.replaceAll("[.,?!]", "");

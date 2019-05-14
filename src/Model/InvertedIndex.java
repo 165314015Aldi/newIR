@@ -22,6 +22,9 @@ public class InvertedIndex {
 
     private ArrayList<Document> listOfDocument = new ArrayList<Document>();
     private ArrayList<Term> dictionary = new ArrayList<Term>();
+    private ArrayList<Cluster> cluster  = new ArrayList<Cluster>();
+    public static final int NUMBER_OF_CLUSTER = 2;
+    
 
     public InvertedIndex() {
     }
@@ -45,6 +48,16 @@ public class InvertedIndex {
     public void setDictionary(ArrayList<Term> dictionary) {
         this.dictionary = dictionary;
     }
+
+    public ArrayList<Cluster> getCluster() {
+        return cluster;
+    }
+
+    public void setCluster(ArrayList<Cluster> cluster) {
+        this.cluster = cluster;
+    }
+    
+    
 
     public ArrayList<Posting> search(String query) {
 //        makeDictionary();
@@ -507,5 +520,13 @@ public class InvertedIndex {
             }
             // lakukan indexing atau buat dictionary
             this.makeDictionaryWithTermNumber();
+    }
+    
+    public void preClustering(){
+        //Baca semua dokumen
+        for (int i = 0; i < listOfDocument.size(); i++) {
+            int idDoc = listOfDocument.get(i).getId();
+            listOfDocument.get(i).setListofPosting(makeTFIDF(idDoc));
+        }
     }
 }
