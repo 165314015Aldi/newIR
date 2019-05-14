@@ -529,4 +529,5 @@ public class InvertedIndex {
             listOfDocument.get(i).setListofPosting(makeTFIDF(idDoc));
         }
     }
+    
 }
