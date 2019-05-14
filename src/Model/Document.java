@@ -87,7 +87,7 @@ public class Document implements Comparable<Document> {
         this.listofPosting = listofPosting;
     }
     
-    public ArrayList<Posting> getListofPosting() {
+    public ArrayList<Posting> getListofPostings() {
         return listofPosting;
     }
     
