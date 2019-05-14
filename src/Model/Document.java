@@ -33,7 +33,7 @@ public class Document implements Comparable<Document> {
     private int id;
     private String content;
     private String realContent;
-    
+
     private ArrayList<Posting> listofPosting = new ArrayList<Posting>();
 
     public String getRealContent() {
@@ -86,12 +86,11 @@ public class Document implements Comparable<Document> {
     public void setListofPosting(ArrayList<Posting> listofPosting) {
         this.listofPosting = listofPosting;
     }
-    
+
     public ArrayList<Posting> getListofPostings() {
         return listofPosting;
     }
-    
-    
+
     public String[] getListofTerm() {
         String value = this.getContent();
         value = value.replaceAll("[.,?!]", "");
@@ -153,21 +152,19 @@ public class Document implements Comparable<Document> {
 
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            while((line = bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 this.setContent(line);
-            }   
+            }
 
-            bufferedReader.close();         
-        }
-        catch(FileNotFoundException ex) {
+            bufferedReader.close();
+        } catch (FileNotFoundException ex) {
             System.out.println("File not Found.");
-        }
-        catch(IOException ex) {
+        } catch (IOException ex) {
             System.out.println(ex.toString());
         }
     }
-    
-    public void removeStopWord(){
+
+    public void removeStopWord() {
         String text = content;
         Version matchVersion = Version.LUCENE_7_7_0;
         Analyzer analyzer = new StandardAnalyzer();
@@ -177,7 +174,7 @@ public class Document implements Comparable<Document> {
         //buat token
         TokenStream tokenStream = analyzer.tokenStream("myField", new StringReader(text.trim()));
         //buang Stopword
-        tokenStream = new StopFilter(tokenStream , stopWords);
+        tokenStream = new StopFilter(tokenStream, stopWords);
         //buat string baru tanpa stopword
         StringBuilder sb = new StringBuilder();
         CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
@@ -192,8 +189,8 @@ public class Document implements Comparable<Document> {
         }
         content = sb.toString();
     }
-    
-    public void Stemming(){
+
+    public void Stemming() {
         String text = content;
         Version matchVersion = Version.LUCENE_7_7_0;
         Analyzer analyzer = new StandardAnalyzer();
@@ -218,8 +215,8 @@ public class Document implements Comparable<Document> {
         }
         content = sb.toString();
     }
-    
-    public void IndonesianStemming(){
+
+    public void IndonesianStemming() {
         String text = content;
 //        System.out.println("Text = "+text);
         Version matchVersion = Version.LUCENE_7_7_0; // Substitute desired Lucene version for XY
@@ -245,4 +242,5 @@ public class Document implements Comparable<Document> {
         }
         content = sb.toString();
     }
+
 }
